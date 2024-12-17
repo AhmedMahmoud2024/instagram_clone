@@ -24,8 +24,28 @@ class AuthMethods {
         //register user
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
-
+        print(cred.user!.uid);
         // add user to our database
+        await _firestore.collection('users').doc(cred.user!.uid).set({
+          'username': username,
+          'uid': cred.user!.uid,
+          'email': email,
+          'bio': bio,
+          'followers': [],
+          'following': []
+        });
+
+        // other way to do this using add
+        //  await _firestore.collection('users').add({
+        //   'username': username,
+        //    'uid': cred.user!.uid,
+        //    'email': email,
+        //    'bio': bio,
+        //    'followers': [],
+        //     'following': []
+        //    });
+
+        res = 'Success';
       }
     } catch (err) {
       res = err.toString();
