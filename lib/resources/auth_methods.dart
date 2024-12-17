@@ -51,7 +51,13 @@ class AuthMethods {
 
         res = 'Success';
       }
-    } catch (err) {
+    }
+    // on FirebaseAuthException catch(err){
+    // if(err.code=='invaild_email'){
+    //  res='The email is badly formated';
+    //  }
+    //}
+    catch (err) {
       res = err.toString();
     }
     return res;
