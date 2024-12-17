@@ -61,7 +61,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 height: 64,
               ),
               const SizedBox(
-                height: 64,
+                height: 18,
               ),
               //circular widget to accept and show our selection file
               Stack(
@@ -120,9 +120,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   textEditingController: _bioController,
                   hintText: "Enter your bio",
                   textInputType: TextInputType.text),
-              const SizedBox(
-                height: 24,
-              ),
+              //   const SizedBox(
+              //     height: 24,
+              //   ),
               //button login
               InkWell(
                 onTap: () async {
