@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_flutter/responsive/mobile_screen_layout.dart';
 import 'package:instagram_flutter/responsive/responsive_layout_screen.dart';
@@ -21,15 +22,38 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Instagram clone',
-      theme: ThemeData.dark()
-          .copyWith(scaffoldBackgroundColor: mobileBackgroundColor),
-      home: const LoginScreen(),
-      // home:  const SignupScreen(),
-      //   home: const ResponsiveLayout(
-      //    webScreenLayout: WebScreenLayout(),
-      //    mobileScreenLayout: MobileScreenLayout())
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Instagram clone',
+        theme: ThemeData.dark()
+            .copyWith(scaffoldBackgroundColor: mobileBackgroundColor),
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapShot) {
+            if (snapShot.connectionState == ConnectionState.active) {
+              if (snapShot.hasData) {
+                return const ResponsiveLayout(
+                    webScreenLayout: WebScreenLayout(),
+                    mobileScreenLayout: MobileScreenLayout());
+              } else if (snapShot.hasError) {
+                return Center(
+                  child: Text('${snapShot.error}'),
+                );
+              }
+            }
+            if (snapShot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: primaryColor,
+                ),
+              );
+            }
+            return const LoginScreen();
+          },
+        )
+        // home:  const SignupScreen(),
+        //   home: const ResponsiveLayout(
+        //    webScreenLayout: WebScreenLayout(),
+        //    mobileScreenLayout: MobileScreenLayout())
+        );
   }
 }
