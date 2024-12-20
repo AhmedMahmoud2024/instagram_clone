@@ -86,4 +86,5 @@ class User {
         following: snapShot['following']);
   }
 }
+
 */
