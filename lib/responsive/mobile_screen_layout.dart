@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_flutter/providers/user_provider.dart';
 import 'package:instagram_flutter/utils/colors.dart';
+import 'package:instagram_flutter/utils/global_variables.dart';
 import 'package:provider/provider.dart';
 import 'package:instagram_flutter/models/user.dart' as model;
 
@@ -44,14 +45,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
     // model.User user = Provider.of<UserProvider>(context).getUser;
     return Scaffold(
         body: PageView(
-          children: [
-            //widgets implementation of nav bar
-            Text("Home"),
-            Text("Search"),
-            Text("add post"),
-            Text("notifications"),
-            Text("profile"),
-          ],
+          children: homeScreenItems,
           physics: NeverScrollableScrollPhysics(),
           controller: pageController,
           onPageChanged: onPageChanged,
