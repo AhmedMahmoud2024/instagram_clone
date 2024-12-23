@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_flutter/utils/colors.dart';
+import 'package:intl/intl.dart';
 
 class PostCard extends StatelessWidget {
   final snap;
@@ -150,7 +151,7 @@ class PostCard extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Text(
-                    '23/12/2024',
+                    DateFormat.yMMMd().format(snap['datePublished'].toDate()),
                     style: TextStyle(fontSize: 16, color: secondaryColor),
                   ),
                 ),
