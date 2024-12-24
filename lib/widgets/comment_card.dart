@@ -30,10 +30,11 @@ class _CommentCardState extends State<CommentCard> {
                       text: TextSpan(children: [
                     TextSpan(
                         text: 'username',
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                        style: const TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold)),
                     TextSpan(
-                      text: 'some description to insert',
-                    ),
+                        text: 'some description to insert',
+                        style: TextStyle(color: Colors.white)),
                   ])),
                   Padding(
                     padding: const EdgeInsets.only(top: 4),
