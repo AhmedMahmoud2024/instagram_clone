@@ -12,6 +12,7 @@ import 'package:instagram_flutter/widgets/text_field_input.dart';
 
 import '../resources/auth_methods.dart';
 import '../responsive/responsive_layout_screen.dart';
+import '../utils/global_variables.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -79,16 +80,21 @@ class _SignupScreenState extends State<SignupScreen> {
     return Scaffold(
         body: SafeArea(
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 32),
+        padding: MediaQuery.of(context).size.width > webScreenSize
+            ? EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.35,
+                //  vertical: MediaQuery.of(context).size.height / 1.5,
+              )
+            : const EdgeInsets.symmetric(horizontal: 32),
         width: double.infinity,
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Flexible(
-                child: Container(),
-                flex: 2,
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
               ),
+
               //svg picture
               SvgPicture.asset(
                 "assets/ic_instagram.svg",
@@ -96,7 +102,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 height: 64,
               ),
               const SizedBox(
-                height: 18,
+                height: 8,
               ),
               //circular widget to accept and show our selection file
               Stack(
@@ -121,7 +127,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ],
               ),
               const SizedBox(
-                height: 24,
+                height: 12,
               ),
               //text field input for username
               TextFieldInput(
@@ -129,7 +135,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   hintText: "Enter your username",
                   textInputType: TextInputType.text),
               const SizedBox(
-                height: 24,
+                height: 12,
               ),
               //text field input for email
               TextFieldInput(
@@ -137,7 +143,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   hintText: "Enter your email",
                   textInputType: TextInputType.emailAddress),
               const SizedBox(
-                height: 24,
+                height: 12,
               ),
               //text field input for password
               TextFieldInput(
@@ -147,7 +153,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 isPass: true,
               ),
               const SizedBox(
-                height: 24,
+                height: 12,
               ),
 
               //text field input for username
@@ -155,9 +161,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   textEditingController: _bioController,
                   hintText: "Enter your bio",
                   textInputType: TextInputType.text),
-              //   const SizedBox(
-              //     height: 24,
-              //   ),
+              const SizedBox(
+                height: 12,
+              ),
               //button signup
               InkWell(
                 onTap: signUpUser,
@@ -169,7 +175,9 @@ class _SignupScreenState extends State<SignupScreen> {
                       )
                     : Container(
                         child: const Text('Sign Up'),
-                        width: double.infinity,
+                        width: double
+                            .infinity, // MediaQuery.of(context).size.width * 0.35,
+                        height: MediaQuery.of(context).size.height * 0.08,
                         alignment: Alignment.center,
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         decoration: const ShapeDecoration(
@@ -183,7 +191,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
               ),
               SizedBox(
-                height: 12,
+                height: 6,
               ),
               //   Flexible(
               //    child: Container(),

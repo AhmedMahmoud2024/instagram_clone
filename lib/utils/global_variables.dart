@@ -8,7 +8,7 @@ import 'package:instagram_flutter/screens/search_screen.dart';
 const webScreenSize = 600;
 
 List<Widget> homeScreenItems = [
-  const FeedScreen(),
+  FeedScreen(),
   const SearchScreen(),
   const AddPostScreen(),
   Text("notifications"),
